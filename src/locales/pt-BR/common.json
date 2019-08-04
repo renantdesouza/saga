@@ -1,0 +1,9 @@
+{
+  "App": {
+    "Components": {
+      "Login": {
+        "label": "Entrar"
+      }
+    }
+  }
+}
