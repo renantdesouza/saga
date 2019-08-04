@@ -1,24 +1,39 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
+import { Switch, Router } from 'react-router-dom';
+
+// eslint-disable-next-line
+import { createBrowserHistory } from 'history';
+
+import './App.css';
+import Routes, {PageRoutes, isAuthenticationRequired} from '../../enumeration/Routes';
+
+const history = createBrowserHistory();
+
+function App({ isAuthenticated }) {
+  const path = history.location.pathname;
+
+  if (isAuthenticationRequired(path) && !isAuthenticated && path !== PageRoutes.LOGIN.path) {
+    history.push(PageRoutes.LOGIN.path);
+  }
+
+  if ((!isAuthenticationRequired(path) || isAuthenticated) && path !== PageRoutes.LOGIN.path) {
+    history.push(path);
+  }
+
+  if (isAuthenticated && PageRoutes === PageRoutes.LOGIN.path) {
+    history.push()
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router history={history}>
+        <Switch>
+          {
+            Routes()
+          }
+        </Switch>
+      </Router>
     </div>
   );
 }

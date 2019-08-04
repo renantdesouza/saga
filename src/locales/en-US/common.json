@@ -1,0 +1,14 @@
+{
+  "App": {
+    "Components": {
+      "Login": {
+        "label": "Login",
+        "fields": {
+          "email": "Email Address",
+          "password": "Password",
+          "rememberMe": "Remember me"
+        }
+      }
+    }
+  }
+}

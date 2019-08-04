@@ -8,7 +8,7 @@ export const doLogin = () => (
 	}).then(r => r)
 );
 
-export const getProfile = () => (
+export const getFavoritePlates = () => (
 	new Promise((resolve) => {
 		setTimeout(() => {
 			resolve(Object.assign({}, {

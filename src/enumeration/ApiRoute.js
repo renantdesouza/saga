@@ -1,15 +1,12 @@
 const ApiRoute = {
 	Api: {
-		BASE_API_URL: 'http://localhost:8080'
+		BASE_API_URL: 'http://localhost:3010'
 	},
 	Login: {
 		URL: '/login'
 	},
-	Profile: {
-		URL: '/profile'
-	},
-	Register: {
-		URL: '/register'
+	FavoritePlates: {
+		URL: '/plates'
 	}
 };
 

@@ -13,8 +13,8 @@ export const doLogin = ({ user, pass }) => (
 /**
  * get the profile`s information.
  * */
-export const getProfile = ({ user, token }) => (
-	useMock ? UserApiMock.getProfile() : BaseApi.get(ApiRoute.Profile.URL, { user, token })
+export const getFavoritePlates = ({ user, token }) => (
+	useMock ? UserApiMock.getFavoritePlates() : BaseApi.get(ApiRoute.Profile.URL, { user, token })
 );
 
 /**

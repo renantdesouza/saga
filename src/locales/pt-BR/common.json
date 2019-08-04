@@ -2,7 +2,12 @@
   "App": {
     "Components": {
       "Login": {
-        "label": "Entrar"
+        "label": "Entrar",
+        "fields": {
+          "email": "Correio eletronico",
+          "password": "Senha",
+          "rememberMe": "Lembrar"
+        }
       }
     }
   }
