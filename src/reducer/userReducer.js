@@ -27,14 +27,10 @@ const whenReceiveToken = (state, payload) => {
  * @returns {Object}
  */
 const userReducer = (state = initialState, action) => ({
-	// actions to deals with register data.
-	[ActionType.USER.REGISTER.FETCH]: { ...state, ...action.payload },
 	// actions to deals with login data.
 	[ActionType.USER.LOGIN.FETCH]: { ...state, ...action.payload },
 	// actions to deals with token data.
 	[ActionType.TOKEN.FETCH_SUCCESS]: whenReceiveToken(state, action.payload),
-	// actions to remove user from store.
-	[ActionType.USER.LOGOUT.FETCH_SUCCESS]: {},
 })[action.type] || state;
 
 export default userReducer;

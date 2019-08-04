@@ -2,11 +2,10 @@ import React from 'react';
 
 import { Switch, Router } from 'react-router-dom';
 
-// eslint-disable-next-line
 import { createBrowserHistory } from 'history';
 
-import './App.css';
 import Routes, {PageRoutes, isAuthenticationRequired} from '../../enumeration/Routes';
+import Loading from "../loading";
 
 const history = createBrowserHistory();
 
@@ -22,11 +21,11 @@ function App({ isAuthenticated }) {
   }
 
   if (isAuthenticated && PageRoutes === PageRoutes.LOGIN.path) {
-    history.push()
+    history.push(PageRoutes.PLATE.path)
   }
 
   return (
-    <div className="App">
+    <div className="app">
       <Router history={history}>
         <Switch>
           {
@@ -34,6 +33,7 @@ function App({ isAuthenticated }) {
           }
         </Switch>
       </Router>
+      <Loading />
     </div>
   );
 }
