@@ -1,7 +1,3 @@
-import React from 'react';
+import Timeline from '../timeline';
 
-const Order = () => {
-	return <div>order</div>
-};
-
-export default Order;
+export default Timeline;

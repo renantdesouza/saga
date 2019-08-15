@@ -6,12 +6,13 @@ import { createBrowserHistory } from 'history';
 
 import Routes, {PageRoutes, isAuthenticationRequired} from '../../enumeration/Routes';
 import Loading from "../loading";
+import Snackbar from '../snackbar';
 import {connect} from "react-redux";
+import {hideMessage, showMessage} from "../../action/feedbackAction";
 
 const history = createBrowserHistory();
 
 function App({ isAuthenticated }) {
-	console.log('isAuthenticated', isAuthenticated);
 
   const path = history.location.pathname;
 
@@ -24,7 +25,6 @@ function App({ isAuthenticated }) {
   }
 
   if (isAuthenticated && path === PageRoutes.LOGIN.path) {
-  	console.log('foi');
     history.push(PageRoutes.PLATE.path)
   }
 
@@ -38,12 +38,19 @@ function App({ isAuthenticated }) {
         </Switch>
       </Router>
       <Loading />
+      <Snackbar/>
     </div>
   );
 }
 
 const mapStateToProps = (state) => ({
 	isAuthenticated: state.user && state.user.isAuthenticated,
+  message: state.message,
 });
 
-export default connect(mapStateToProps, null)(App);
+const mapDispatchToProps = (dispatch) => ({
+  showMessage: showMessage(dispatch),
+  hideMessage: hideMessage(dispatch),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps())(App);

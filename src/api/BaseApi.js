@@ -2,38 +2,60 @@ import ApiRoute from '../enumeration/ApiRoute';
 import HttpMethod from '../enumeration/HttpMethod';
 
 const headers = new Headers({
-	"Content-Type": "text/plain",
-	"X-Custom-Header": "ProcessThisImmediately",
+	'Accept': 'application/json',
+	'Content-Type': 'application/json'
 });
 
-const config = (method) => ({
+const config = (method, body) => ({
 	method: method,
 	headers: headers,
 	mode: 'cors',
-	cache: 'default'
+	cache: 'default',
+	body: body ? JSON.stringify(body) : undefined,
 });
 
-export const useMock = process.env.NODE_ENV !== 'production';
+const getConfig = () => (
+	config(HttpMethod.GET)
+);
+
+const postConfig = (body) => (
+	config(HttpMethod.POST, body)
+);
+
+const putConfig = (body) => (
+	config(HttpMethod.PUT, body)
+);
+
+const patchConfig = (body) => (
+	config(HttpMethod.PATCH, body)
+);
+
+const deleteConfig = (body) => (
+	config(HttpMethod.PUT, body)
+);
+
+// export const useMock = process.env.NODE_ENV !== 'production';
+export const useMock = false;
 
 export const BaseApi = {
 	'get': (url) => (
-		fetch(`${ApiRoute.BASE_API_URL}/${url}`, config(HttpMethod.GET))
-			.then(response => response)
+		fetch(`${ApiRoute.Api.BASE_API_URL}${url}`, getConfig())
+			.then(response => response.ok && response.json())
 	),
 	'post': (url, body) => (
-		fetch(`${ApiRoute.BASE_API_URL}/${url}`, config(HttpMethod.POST), body)
-			.then(response => response)
+		fetch(`${ApiRoute.Api.BASE_API_URL}${url}`, postConfig(body))
+			.then(response => response.ok && response.json())
 	),
 	'put': (url, body) => (
-		fetch(`${ApiRoute.BASE_API_URL}/${url}`, config(HttpMethod.PUT), body)
+		fetch(`${ApiRoute.Api.BASE_API_URL}/${url}`, putConfig(body))
 			.then(response => response)
 	),
 	'patch': (url, body) => (
-		fetch(`${ApiRoute.BASE_API_URL}/${url}`, config(HttpMethod.PATCH), body)
+		fetch(`${ApiRoute.Api.BASE_API_URL}/${url}`, patchConfig(body))
 			.then(response => response)
 	),
 	'delete': (url, body) => (
-		fetch(`${ApiRoute.BASE_API_URL}/${url}`, config(HttpMethod.DELETE), body)
+		fetch(`${ApiRoute.Api.BASE_API_URL}/${url}`, deleteConfig(body))
 			.then(response => response)
 	)
 };

@@ -7,10 +7,19 @@ const ActionType = {
 			FETCH: 'FETCH_USER_LOGIN',
 		}
 	},
+	PLATE: {
+		FETCH: 'FETCH_PLATE',
+		FETCH_SUCCESS: 'FETCH_PLATE_SUCCESS',
+		LIKE: 'LIKE_PLATE'
+	},
 	LOADING: {
 		INCREMENT: 'INCREMENT',
 		DECREMENT: 'DECREMENT',
 	},
+	MESSENGER: {
+		SHOW: 'SHOW_MESSENGER',
+		HIDE: 'HIDE_MESSENGER',
+	}
 };
 
 export default ActionType;

@@ -40,12 +40,11 @@ const useStyles = makeStyles(theme => ({
 	},
 }));
 
-function Login({ doLogin, }) {
+function Login({ doLogin, isLoading }) {
 	const classes = useStyles();
 
 	const [ username, setUsername ] = useState('');
 	const [ password, setPassword ] = useState('');
-	const [ isDisabled, setIsDisabled] = useState(false);
 
 	return (
 		<Container component="main" maxWidth="xs">
@@ -59,7 +58,7 @@ function Login({ doLogin, }) {
 				</Typography>
 				<form className={ classes.form } noValidate>
 					<TextField
-						disabled={isDisabled}
+						disabled={isLoading}
 						variant="outlined"
 						margin="normal"
 						required
@@ -72,7 +71,7 @@ function Login({ doLogin, }) {
 						value={username}
 						onChange={(e) => setUsername(e.target.value)}/>
 					<TextField
-						disabled={isDisabled}
+						disabled={isLoading}
 						variant="outlined"
 						margin="normal"
 						required
@@ -85,19 +84,17 @@ function Login({ doLogin, }) {
 						value={password}
 						onChange={(e) => setPassword(e.target.value)}/>
 					<FormControlLabel
-						disabled={isDisabled}
+						disabled={isLoading}
 						control={ <Checkbox value="remember" color="primary" /> }
 						label={ t("App.Components.Login.fields.rememberMe") }/>
 					<Button
-						disabled={isDisabled}
-						onClick={() => {
-							setIsDisabled(true);
-
+						disabled={isLoading}
+						onClick={() => (
 							doLogin({
 								user: username,
 								pass: password
-							});
-						}}
+							})
+						)}
 						fullWidth
 						variant="contained"
 						color="primary"
@@ -110,8 +107,12 @@ function Login({ doLogin, }) {
 	);
 }
 
+const mapStateToProps = (state) => ({
+	isLoading: state.loading.counter > 0
+});
+
 const mapDispatchToProps = (dispatch) => ({
 	doLogin: doLogin(dispatch),
 });
 
-export default connect(null, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

@@ -4,6 +4,9 @@ const initialState = {
 	loading: {
 		counter: 0,
 	},
+	messenger: {
+		message: ''
+	},
 };
 
 export default initialState;

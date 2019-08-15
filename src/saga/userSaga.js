@@ -23,17 +23,15 @@ function* loginUser() {
 	const user = yield select(getUser);
 
 	// get the token after user been logged in.
-	const { token, status, message } = yield call(UserApi.doLogin, user);
+	const { status, data } = yield call(UserApi.doLogin, user);
 
-	// TODO validate the token before admitting the user is authenticated
-	const isAuthenticated = token !== undefined;
-
-	if (isAuthenticated) {
-		throw new Error("");
+	if (status !== '200') {
+		yield put({type: ActionType.MESSENGER.SHOW, payload: data })
+	} else {
+		const { id, token } = data;
+		// set token in state.
+		yield put({type: ActionType.TOKEN.FETCH_SUCCESS, payload: { id, token, isAuthenticated: true }});
 	}
-
-	// set token in state.
-	yield put({type: ActionType.TOKEN.FETCH_SUCCESS, payload: { ...token, isAuthenticated }});
 }
 
 /**

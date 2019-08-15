@@ -1,12 +1,17 @@
 const ApiRoute = {
 	Api: {
-		BASE_API_URL: 'http://localhost:3010'
+		BASE_API_URL: 'http://localhost:3040',
 	},
 	Login: {
-		URL: '/login'
+		URL: '/login',
 	},
-	FavoritePlates: {
-		URL: '/plates'
+	Plates: {
+		URL: '/plates',
+	},
+	Users: {
+		Plates: {
+			URL: (id) => `/users/${id}/plates`
+		},
 	}
 };
 

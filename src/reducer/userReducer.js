@@ -18,7 +18,7 @@ const initialState = {
 const whenReceiveToken = (state, payload) => {
 	const newState = { ...state, ...payload };
 	delete newState.pass;
-	return newState
+	return newState;
 };
 
 /***

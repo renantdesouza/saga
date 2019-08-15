@@ -1,5 +1,6 @@
 import {put} from 'redux-saga/effects';
 
+
 import ActionType from "../enumeration/ActionType";
 
 /***
@@ -21,8 +22,7 @@ function sagaFlowExecutor(callback) {
 			yield put({ type: ActionType.LOADING.DECREMENT });
 		} catch (e) {
 			// generify errors
-			console.log(e);
-
+				console.error(e);
 			yield put({ type: ActionType.ERROR, payload: e });
 		}
 	}
