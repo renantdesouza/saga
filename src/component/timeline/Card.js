@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import classnames from "classnames";
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -48,12 +48,10 @@ function RecipeReviewCard({ username, plate, like, isLoading, plateId }) {
 	const classes = useStyles();
 
 	const [isExpanded, setIsExpanded] = useState(false);
-	const [isClicked, setIsClicked] = useState(plate.isLiked);
 
 	const onLike = (plateId) => (
 		() => {
 			like(plateId);
-			setIsClicked(!isClicked);
 		}
 	);
 
@@ -75,9 +73,14 @@ function RecipeReviewCard({ username, plate, like, isLoading, plateId }) {
 					title="Shrimp and Chorizo Paella"
 					subheader="September 14, 2016"
 				/>
+				{/*<CardMedia*/}
+				{/*	className={classes.media}*/}
+				{/*	image="https://img.cybercook.com.br/imagens/receitas/644/strogonoff-de-frango-1.jpg"*/}
+				{/*	title="Contemplative Reptile"*/}
+				{/*/>*/}
 				<CardMedia
 					className={classes.media}
-					image="https://conteudo.imguol.com.br/c/esporte/ec/2018/07/18/rodriguinho-comemora-com-romero-o-gol-marcado-pelo-corinthians-contra-o-botafogo-1531963095307_300x200.jpg"
+					image="https://portal.minervafoods.com/files/styles/blog_post_page/public/picanha_assada_forno1.jpg?itok=xhKiEHfJ"
 					title="Contemplative Reptile"
 				/>
 				<CardContent>
@@ -95,7 +98,7 @@ function RecipeReviewCard({ username, plate, like, isLoading, plateId }) {
 								aria-label="Add to favorites">
 								<FavoriteIcon
 									style={{
-										color: isClicked ? 'red' : ''
+										color: plate.isLiked ? 'red' : ''
 									}}/>
 							</IconButton>
 						}
@@ -144,14 +147,11 @@ function RecipeReviewCard({ username, plate, like, isLoading, plateId }) {
 	);
 }
 
-const mapStateToProps = ({user, plate}) => {
-	console.log('plate', plate);
-	return ({
-		username: user.user,
-		isLoading: plate.isLoading,
-		plateId: plate.plateId,
-	});
-}
+const mapStateToProps = ({user, plate}) => ({
+	username: user.user,
+	isLoading: plate.isLoading,
+	plateId: plate.plateId,
+});
 
 const mapDispatchToProps = (dispatch) => ({
 	like: like(dispatch),

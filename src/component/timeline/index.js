@@ -25,12 +25,9 @@ function Index({ plates = [], getPlates }) {
 	);
 }
 
-const mapStateToProps = (state) =>  {
-	console.log('state', state);
-	return ({
-		plates: state.plate ? state.plate.plates : []
-	});
-}
+const mapStateToProps = (state) =>  ({
+	plates: state.plate ? state.plate.plates : []
+});
 
 const mapDispatchToProps = (dispatch) => ({
 	getPlates: getPlates(dispatch),

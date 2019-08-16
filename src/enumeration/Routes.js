@@ -3,7 +3,7 @@ import React from 'react';
 import {Route} from "react-router-dom";
 
 import Login from '../component/login';
-import Plate from '../component/plate';
+import Plate from '../component/timeline';
 
 export const PageRoutes = {
 	LOGIN: {
