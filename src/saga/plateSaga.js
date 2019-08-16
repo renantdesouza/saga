@@ -1,7 +1,7 @@
-import {call, put, select, takeLatest, all} from 'redux-saga/effects';
+import {all, call, put, select, takeLatest} from 'redux-saga/effects';
 
 import ActionType from '../enumeration/ActionType';
-import {getPlatesByUser, getPlates as fetchPlates, likePlate} from '../api/PlatesApi';
+import {getPlates as fetchPlates, getPlatesByUser, likePlate} from '../api/PlatesApi';
 import {mountPlates, refreshLikes} from '../service/plate/';
 
 import sagaFlowExecutor from './sagaFlowExecutor';
@@ -45,36 +45,32 @@ function* fetchPlate() {
 	// when all fetch's returns correctly.
 	} else {
 		// set plates in state.
-		const mountedPlates = mountPlates(plates, platesByUser);
-
-		yield put({type: ActionType.PLATE.FETCH_SUCCESS, payload: { plates: mountedPlates } });
+		yield put({type: ActionType.PLATE.FETCH_SUCCESS, payload: { plates: mountPlates(plates, platesByUser) } });
 	}
 }
 
+/**
+ *
+ * @returns {IterableIterator<PutEffect<{payload: *, type: *}>|SelectEffect|CallEffect|PutEffect<{payload: boolean, type: *}>|PutEffect<{payload: {plates: *}, type: *}>>}
+ */
 function* likeSaga() {
-	// ADD A START FROM LIKE_LOADING
 	yield put({type: ActionType.USER.PLATE.LIKE_LOADING_START, payload: true, });
 
-	// get plate from store.
-	const plateId = yield select(getPlateId);
-
-	// get the user from store.
-	const user = yield select(getUser);
-
-	// get plates from store.
-	const plates = yield select(getPlates);
+	// get items from store.
+	const [ plateId, user, plates ] = yield all([
+		select(getPlateId),
+		select(getUser),
+		select(getPlates)
+	]);
 
 	const {status, data} = yield call(likePlate, user.id, plateId);
 
 	if (status !== 200) {
 		yield put({type: ActionType.MESSENGER.SHOW, payload: data.message});
 	} else {
-		const updatedPlates = refreshLikes(plates, plateId);
-
-		yield put({type: ActionType.PLATE.FETCH_SUCCESS, payload: { plates: updatedPlates } });
+		yield put({type: ActionType.PLATE.FETCH_SUCCESS, payload: { plates: refreshLikes(plates, plateId) } });
 	}
 
-	// ADD A STOP FROM LIKE_LOADING
 	yield put({type: ActionType.USER.PLATE.LIKE_LOADING_STOP, payload: false, });
 }
 
