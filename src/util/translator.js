@@ -26,11 +26,15 @@ export default (key) => {
 
 	const splitted = key.split('.');
 
-	const callback = (ignoredValue, key) => (
-		node = node[splitted[key]]
-	);
+	try{
+		const callback = (ignoredValue, key) => (
+			node = node[splitted[key]]
+		);
 
-	splitted.forEach(callback);
+		splitted.forEach(callback);
+	} catch (e) {
+		console.error('error to internationalize', e);
+	}
 
 	return node || key;
 };

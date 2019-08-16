@@ -63,9 +63,14 @@ function RecipeReviewCard({ username, plate, like, isLoading, plateId }) {
 			}}>
 			<Card className={classes.card}>
 				<CardHeader
-					avatar={<Avatar aria-label="Recipe" className={classes.avatar}> { username ? username.substring(0, 1).toLocaleUpperCase() : '?' } </Avatar>}
+					avatar={
+						<Avatar
+							aria-label="Recipe"
+							className={classes.avatar}>
+							{ username ? username.substring(0, 1).toLocaleUpperCase() : '?' }
+						</Avatar>
+					}
 					action={
-						// TODO ADD THE SAVE FUNCTION
 						<IconButton>
 							<MoreVertIcon/>
 						</IconButton>
@@ -73,15 +78,10 @@ function RecipeReviewCard({ username, plate, like, isLoading, plateId }) {
 					title="Shrimp and Chorizo Paella"
 					subheader="September 14, 2016"
 				/>
-				{/*<CardMedia*/}
-				{/*	className={classes.media}*/}
-				{/*	image="https://img.cybercook.com.br/imagens/receitas/644/strogonoff-de-frango-1.jpg"*/}
-				{/*	title="Contemplative Reptile"*/}
-				{/*/>*/}
 				<CardMedia
 					className={classes.media}
 					image="https://portal.minervafoods.com/files/styles/blog_post_page/public/picanha_assada_forno1.jpg?itok=xhKiEHfJ"
-					title="Contemplative Reptile"
+					title="picanha"
 				/>
 				<CardContent>
 					<Typography component="p">
