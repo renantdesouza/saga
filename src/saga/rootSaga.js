@@ -5,7 +5,8 @@ import {
 } from './userSaga';
 
 import {
-	watchFetchPlates
+	watchFetchPlates,
+	watchLikePlate,
 } from './plateSaga';
 
 function* rootSaga() {
@@ -13,6 +14,7 @@ function* rootSaga() {
 	yield all([
 		watchLogin(),
 		watchFetchPlates(),
+		watchLikePlate(),
 	]);
 }
 

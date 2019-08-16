@@ -10,7 +10,10 @@ const ApiRoute = {
 	},
 	Users: {
 		Plates: {
-			URL: (id) => `/users/${id}/plates`
+			URL: (id) => `/users/${id}/plates`,
+			Like: {
+				URL: (userId, plateId) => `/users/${userId}/plates/${plateId}`
+			}
 		},
 	}
 };

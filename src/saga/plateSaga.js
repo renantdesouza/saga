@@ -1,8 +1,8 @@
 import {call, put, select, takeLatest, all} from 'redux-saga/effects';
 
 import ActionType from '../enumeration/ActionType';
-import {getPlatesByUser, getPlates} from '../api/PlatesApi';
-import { mountPlates } from '../service/plate/';
+import {getPlatesByUser, getPlates as fetchPlates, likePlate} from '../api/PlatesApi';
+import {mountPlates, refreshLikes} from '../service/plate/';
 
 import sagaFlowExecutor from './sagaFlowExecutor';
 
@@ -12,6 +12,14 @@ import sagaFlowExecutor from './sagaFlowExecutor';
  */
 const getUser = (state) => (
 	state.user
+);
+
+const getPlateId = (state) => (
+	state.plate.plateId
+);
+
+const getPlates = (state) => (
+	state.plate.plates
 );
 
 /**
@@ -24,7 +32,7 @@ function* fetchPlate() {
 	const user = yield select(getUser);
 
 	const [ {status: platesStatus, data: plates}, {status: platesByUserStatus, data: platesByUser} ] = yield all([
-		call(getPlates),
+		call(fetchPlates),
 		call(getPlatesByUser, user),
 	]);
 
@@ -43,11 +51,46 @@ function* fetchPlate() {
 	}
 }
 
+function* likeSaga() {
+	// ADD A START FROM LIKE_LOADING
+	yield put({type: ActionType.USER.PLATE.LIKE_LOADING_START, payload: true, });
+
+	// get plate from store.
+	const plateId = yield select(getPlateId);
+
+	// get the user from store.
+	const user = yield select(getUser);
+
+	// get plates from store.
+	const plates = yield select(getPlates);
+
+	const {status, data} = yield call(likePlate, user.id, plateId);
+
+	if (status !== 200) {
+		yield put({type: ActionType.MESSENGER.SHOW, payload: data.message});
+	} else {
+		const updatedPlates = refreshLikes(plates, plateId);
+
+		yield put({type: ActionType.PLATE.FETCH_SUCCESS, payload: { plates: updatedPlates } });
+	}
+
+	// ADD A STOP FROM LIKE_LOADING
+	yield put({type: ActionType.USER.PLATE.LIKE_LOADING_STOP, payload: false, });
+}
+
 /**
- * Add a watcher to events dispatched with intention of observe loginUser saga
+ * Add a watcher to events dispatched with intention of observe fetchPlate saga.
  *
  * @returns {IterableIterator<ForkEffect>}
  */
 export function* watchFetchPlates() {
-	yield takeLatest(ActionType.PLATE.FETCH, sagaFlowExecutor(fetchPlate))
+	yield takeLatest(ActionType.PLATE.FETCH, sagaFlowExecutor(fetchPlate));
+}
+
+/**
+ * Add a watcher to events dispatched with intention of observe like saga.
+ * @returns {IterableIterator<any>}
+ */
+export function* watchLikePlate() {
+	yield takeLatest(ActionType.USER.PLATE.LIKE, likeSaga);
 }

@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, Fragment} from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
 import Card from "./Card";
@@ -12,7 +12,7 @@ function Index({ plates = [], getPlates }) {
 	}, [getPlates]);
 
 	return (
-		<React.Fragment>
+		<Fragment>
 			<CssBaseline/>
 			<Container maxWidth="lg">
 				{
@@ -21,11 +21,11 @@ function Index({ plates = [], getPlates }) {
 					))
 				}
 			</Container>
-		</React.Fragment>
+		</Fragment>
 	);
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state) =>  {
 	console.log('state', state);
 	return ({
 		plates: state.plate ? state.plate.plates : []

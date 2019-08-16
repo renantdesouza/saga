@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import classnames from "classnames";
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -15,6 +15,8 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import {connect} from "react-redux";
+import {like} from "../../action/likeAction";
+import {CircularProgress} from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
 	card: {
@@ -42,11 +44,18 @@ const useStyles = makeStyles(theme => ({
 	},
 }));
 
-function RecipeReviewCard({ username, plate }) {
+function RecipeReviewCard({ username, plate, like, isLoading, plateId }) {
 	const classes = useStyles();
 
 	const [isExpanded, setIsExpanded] = useState(false);
 	const [isClicked, setIsClicked] = useState(plate.isLiked);
+
+	const onLike = (plateId) => (
+		() => {
+			like(plateId);
+			setIsClicked(!isClicked);
+		}
+	);
 
 	return (
 		<div
@@ -78,12 +87,18 @@ function RecipeReviewCard({ username, plate }) {
 					</Typography>
 				</CardContent>
 				<CardActions className={classes.actions}>
-					<IconButton
-						onClick={() => setIsClicked(!isClicked)}
-						aria-label="Add to favorites">
-						<FavoriteIcon
-							style={{color: isClicked ? 'red' : ''}}/>
-					</IconButton>
+					{
+						isLoading && plateId === plate._id?
+							<CircularProgress /> :
+							<IconButton
+								onClick={onLike(plate._id)}
+								aria-label="Add to favorites">
+								<FavoriteIcon
+									style={{
+										color: isClicked ? 'red' : ''
+									}}/>
+							</IconButton>
+						}
 					<IconButton
 						className={classnames(classes.expand, {
 							[classes.expandOpen]: isExpanded,
@@ -129,8 +144,17 @@ function RecipeReviewCard({ username, plate }) {
 	);
 }
 
-const mapStateToProps = ({user}) => ({
-	username: user.user,
+const mapStateToProps = ({user, plate}) => {
+	console.log('plate', plate);
+	return ({
+		username: user.user,
+		isLoading: plate.isLoading,
+		plateId: plate.plateId,
+	});
+}
+
+const mapDispatchToProps = (dispatch) => ({
+	like: like(dispatch),
 });
 
-	export default connect(mapStateToProps, null)(RecipeReviewCard);
+export default connect(mapStateToProps, mapDispatchToProps)(RecipeReviewCard);

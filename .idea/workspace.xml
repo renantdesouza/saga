@@ -2,38 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="46c5d919-6b9c-4072-81a2-ac9ca718e1c8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/action/feedbackAction.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/action/plateAction.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/PlatesApi.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/component/snackbar/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/component/timeline/Card.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/component/timeline/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/reducer/messengerReducer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/reducer/plateReducer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/service/plate/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/action/likeAction.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/action/plateAction.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/action/plateAction.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/api/BaseApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/BaseApi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/UserApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/UserApi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/mock/UserApiMock.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/mock/UserApiMock.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/app/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/app/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/login/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/login/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/plate/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/plate/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/PlatesApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/PlatesApi.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/timeline/Card.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/timeline/Card.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/timeline/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/timeline/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/enumeration/ActionType.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/enumeration/ActionType.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/enumeration/ApiRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/enumeration/ApiRoute.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/error/Error.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/error/PlateError.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/error/UserError.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/reducer/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducer/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/reducer/loadingReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducer/loadingReducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/reducer/userReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducer/userReducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/reducer/plateReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducer/plateReducer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/saga/plateSaga.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/saga/plateSaga.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/saga/rootSaga.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/saga/rootSaga.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/saga/sagaFlowExecutor.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/saga/sagaFlowExecutor.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/saga/userSaga.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/saga/userSaga.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/initialState.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/initialState.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/plate/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/plate/index.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -148,7 +129,7 @@
       <option name="presentableId" value="Default" />
       <updated>1564942423356</updated>
       <workItem from="1564942425182" duration="8950000" />
-      <workItem from="1564965922060" duration="50579000" />
+      <workItem from="1564965922060" duration="58481000" />
     </task>
     <servers />
   </component>

@@ -15,3 +15,10 @@ export const getPlatesByUser = ({ id }) => (
 export const getPlates = () => (
 	useMock ? UserApiMock.getPlates() : BaseApi.get(ApiRoute.Plates.URL)
 );
+
+/**
+ * save a like by user to plate.
+ * */
+export const likePlate = (userId, plateId) => (
+	useMock ? UserApiMock.getPlates() : BaseApi.post(ApiRoute.Users.Plates.Like.URL(userId, plateId))
+);

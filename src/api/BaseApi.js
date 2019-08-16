@@ -18,9 +18,13 @@ const getConfig = () => (
 	config(HttpMethod.GET)
 );
 
-const postConfig = (body) => (
-	config(HttpMethod.POST, body)
-);
+const postConfig = (body) => {
+	const configuration = config(HttpMethod.POST, body);
+	if (body === undefined) {
+		delete configuration.body;
+	}
+	return configuration
+};
 
 const putConfig = (body) => (
 	config(HttpMethod.PUT, body)
@@ -42,10 +46,12 @@ export const BaseApi = {
 		fetch(`${ApiRoute.Api.BASE_API_URL}${url}`, getConfig())
 			.then(response => response.ok && response.json())
 	),
-	'post': (url, body) => (
-		fetch(`${ApiRoute.Api.BASE_API_URL}${url}`, postConfig(body))
+	'post': (url, body) => {
+		console.log('url', url);
+		console.log('body', body);
+		return fetch(`${ApiRoute.Api.BASE_API_URL}${url}`, postConfig(body))
 			.then(response => response.ok && response.json())
-	),
+	},
 	'put': (url, body) => (
 		fetch(`${ApiRoute.Api.BASE_API_URL}/${url}`, putConfig(body))
 			.then(response => response)
