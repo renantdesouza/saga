@@ -53,4 +53,4 @@ const mapDispatchToProps = (dispatch) => ({
   hideMessage: hideMessage(dispatch),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps())(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -15,6 +15,11 @@ export const PageRoutes = {
 		path: '/plate',
 		component: Plate,
 		isAuthenticationRequired: true,
+	},
+	PLATE_1: {
+		path: '/',
+		component: Plate,
+		isAuthenticationRequired: true,
 	}
 };
 
